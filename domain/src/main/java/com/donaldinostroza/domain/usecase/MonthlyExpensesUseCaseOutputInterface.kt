@@ -1,6 +1,6 @@
 package com.donaldinostroza.domain.usecase
 
-interface GetMonthlyExpensesUseCaseOutputInterface {
+interface MonthlyExpensesUseCaseOutputInterface {
 
     fun returnMonthlyExpense(value : Long)
 }

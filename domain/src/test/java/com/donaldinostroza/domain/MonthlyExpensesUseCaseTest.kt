@@ -1,7 +1,8 @@
 package com.donaldinostroza.domain
 
-import com.donaldinostroza.domain.usecase.GetMonthlyExpensesUseCase
-import com.donaldinostroza.domain.usecase.GetMonthlyExpensesUseCaseOutputInterface
+import com.donaldinostroza.domain.usecase.MonthlyExpensesUseCase
+import com.donaldinostroza.domain.usecase.MonthlyExpensesUseCaseOutputInterface
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,16 +15,16 @@ import org.mockito.MockitoAnnotations
 import java.time.Month
 
 @RunWith(JUnit4::class)
-class GetMonthlyExpensesUseCaseTest {
+class MonthlyExpensesUseCaseTest {
 
-    private lateinit var getMonthlyExpensesUseCase: GetMonthlyExpensesUseCase
+    private lateinit var monthlyExpensesUseCase: MonthlyExpensesUseCase
     @Mock
-    private lateinit var outputInterface: GetMonthlyExpensesUseCaseOutputInterface
+    private lateinit var outputInterface: MonthlyExpensesUseCaseOutputInterface
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        getMonthlyExpensesUseCase = GetMonthlyExpensesUseCase(outputInterface)
+        monthlyExpensesUseCase = MonthlyExpensesUseCase(outputInterface)
     }
 
     @Test
@@ -33,7 +34,7 @@ class GetMonthlyExpensesUseCaseTest {
         val month = Month.JUNE
 
         // When
-        val response = getMonthlyExpensesUseCase.get(receiverId, month)
+        runBlocking { monthlyExpensesUseCase.get(receiverId, month) }
 
         // Then
         Mockito.verify(outputInterface, times(1)).returnMonthlyExpense(eq(1000L))

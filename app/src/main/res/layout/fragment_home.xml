@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.donaldinostroza.myallowanceclean.ui.main.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".home.HomeFragment">
+
+        <TextView
+            android:id="@+id/tv_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Francisca spent"
+            android:textColor="@android:color/white"
+            android:text="@string/monthly_expense_label_1"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintStart_toStartOf="@id/tv_amount"
+            app:layout_constraintEnd_toEndOf="@id/tv_amount"
+            app:layout_constraintBottom_toTopOf="@id/tv_amount" />
+
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="$5.000"
+            android:text="@{viewModel.monthlyExpense}"
+            android:textSize="40sp"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_below_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="This month"
+            android:textColor="@android:color/white"
+            android:text="@string/monthly_expense_label_2"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@id/tv_amount"
+            app:layout_constraintEnd_toEndOf="@id/tv_amount"
+            app:layout_constraintTop_toBottomOf="@id/tv_amount" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
