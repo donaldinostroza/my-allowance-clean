@@ -9,7 +9,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.times
@@ -38,12 +37,13 @@ class MonthlyExpensesUseCaseTest {
         // Given
         val receiverId = 1
         val month = Calendar.JUNE
+        val year = 2020
 
         // When
-        runBlocking { monthlyExpensesUseCase.get(receiverId, month) }
+        runBlocking { monthlyExpensesUseCase.get(receiverId, month, year) }
 
         // Then
-        Mockito.verify(outputInterface, times(1)).returnMonthlyExpense(eq(1000L))
+        Mockito.verify(outputInterface, times(1)).returnMonthlyExpense(0L)
     }
 
     @Test
@@ -51,10 +51,11 @@ class MonthlyExpensesUseCaseTest {
         //Given
         val receiverId = 1
         val month = Calendar.JUNE
+        val year = 2020
         Mockito.`when`(repository.getMovementsByReceiver(receiverId)).thenReturn(listOf())
 
         // When
-        runBlocking { monthlyExpensesUseCase.get(receiverId, month) }
+        runBlocking { monthlyExpensesUseCase.get(receiverId, month, year) }
 
         // Then
         Mockito.verify(repository, times(1)).getMovementsByReceiver(receiverId)
@@ -65,13 +66,13 @@ class MonthlyExpensesUseCaseTest {
         //Given
         val receiverId = 1
         val month = Calendar.JUNE
+        val year = 2020
         Mockito.`when`(repository.getMovementsByReceiver(receiverId)).thenReturn(listOf())
 
         // When
-        runBlocking { monthlyExpensesUseCase.get(receiverId, month) }
+        runBlocking { monthlyExpensesUseCase.get(receiverId, month, year) }
 
         // Then
-        Mockito.verify(receiverEntity, times(1))
-            .getMonthlyExpense(listOf(), month)
+        Mockito.verify(receiverEntity, times(1)).getMonthlyExpense(listOf(), month, year)
     }
 }

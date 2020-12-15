@@ -9,9 +9,9 @@ class MonthlyExpensesUseCase(
     private val receiverEntity: ReceiverEntity
 ) : MonthlyExpensesUseCaseInputInterface {
 
-    override suspend fun get(receiverId: Int, month: Int) {
+    override suspend fun get(receiverId: Int, month: Int, year: Int) {
         val movements = movementsRepository.getMovementsByReceiver(receiverId)
-        val amount = receiverEntity.getMonthlyExpense(movements, month)
+        val amount = receiverEntity.getMonthlyExpense(movements, month, year)
 
         outputInterface.returnMonthlyExpense(amount)
     }

@@ -16,13 +16,16 @@ import java.util.Locale
 class ReceiverProfileViewModel : ViewModel(), MonthlyExpensesUseCaseOutputInterface {
 
     var monthlyExpense: String = ""
+    private val receiverId = 1
+    private val month: Int = Calendar.DECEMBER
+    private val year: Int = 2020
 
     private val monthlyExpensesUseCase: MonthlyExpensesUseCaseInputInterface =
         UseCaseFactory.getMonthlyExpensesUseCase(this, RepositoryFactory.getMovementsRepository())
 
     fun initData() {
         viewModelScope.launch(Dispatchers.IO) {
-            monthlyExpensesUseCase.get(1, Calendar.DECEMBER)
+            monthlyExpensesUseCase.get(receiverId, month, year)
         }
     }
 

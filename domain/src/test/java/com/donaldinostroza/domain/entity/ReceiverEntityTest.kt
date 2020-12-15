@@ -26,10 +26,11 @@ class ReceiverEntityTest {
             MovementEntity(GregorianCalendar(2020, Calendar.DECEMBER, 3), TransactionType.OUTCOME, 3000),
         )
         val month = Calendar.DECEMBER
+        val year = 2020
         val expectedValue = 6000L
 
         //When
-        val result = entity.getMonthlyExpense(movements, month)
+        val result = entity.getMonthlyExpense(movements, month, year)
 
         //Then
         assertEquals(expectedValue, result)
@@ -40,10 +41,11 @@ class ReceiverEntityTest {
         //Given
         val movements = listOf<MovementEntity>()
         val month = Calendar.DECEMBER
+        val year = 2020
         val expectedValue = 0L
 
         //When
-        val result = entity.getMonthlyExpense(movements, month)
+        val result = entity.getMonthlyExpense(movements, month, year)
 
         //Then
         assertEquals(expectedValue, result)

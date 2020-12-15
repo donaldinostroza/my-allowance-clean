@@ -4,9 +4,9 @@ import java.util.Calendar
 
 open class ReceiverEntity {
 
-    fun getMonthlyExpense(monthlyMovements: List<MovementEntity>, month: Int) : Long {
+    open fun getMonthlyExpense(monthlyMovements: List<MovementEntity>, month: Int, year: Int) : Long {
         return monthlyMovements
-            .filter { it.transactionDate.get(Calendar.MONTH) == month }
+            .filter { it.transactionDate.get(Calendar.MONTH) == month && it.transactionDate.get(Calendar.YEAR) == year }
             .filter { it.type == TransactionType.OUTCOME }
             .sumOf { it.amount }
     }
