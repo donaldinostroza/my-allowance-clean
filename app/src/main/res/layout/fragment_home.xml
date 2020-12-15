@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.donaldinostroza.myallowanceclean.ui.main.HomeViewModel" />
+            type="com.donaldinostroza.myallowanceclean.ui.main.ReceiverProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,6 +1,5 @@
 package com.donaldinostroza.myallowanceclean.ui.main
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.donaldinostroza.domain.usecase.MonthlyExpensesUseCaseInputInterface
@@ -9,10 +8,12 @@ import com.donaldinostroza.myallowanceclean.ui.main.di.UseCaseFactory
 import com.donaldinostroza.myallowanceclean.ui.main.di.RepositoryFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
+import java.text.NumberFormat
+import java.util.Calendar
+import java.util.Currency
+import java.util.Locale
 
-class HomeViewModel @ViewModelInject constructor()
-    : ViewModel(), MonthlyExpensesUseCaseOutputInterface {
+class ReceiverProfileViewModel : ViewModel(), MonthlyExpensesUseCaseOutputInterface {
 
     var monthlyExpense: String = ""
 
@@ -26,7 +27,16 @@ class HomeViewModel @ViewModelInject constructor()
     }
 
     override fun returnMonthlyExpense(value: Long) {
-        monthlyExpense = value.toString()
+        monthlyExpense = formatAmount(value)
+    }
+
+    private fun formatAmount(value: Long) : String {
+        val nf = NumberFormat.getInstance()
+        nf.isGroupingUsed = true
+        val currency = Currency.getInstance(Locale.getDefault())
+        nf.currency = currency
+
+        return currency.symbol +  NumberFormat.getInstance().format(value)
     }
 
 }

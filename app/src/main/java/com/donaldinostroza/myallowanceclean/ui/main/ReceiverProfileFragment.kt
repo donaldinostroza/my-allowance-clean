@@ -10,14 +10,15 @@ import com.donaldinostroza.myallowanceclean.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class ReceiverProfileFragment : Fragment() {
 
-    private val viewModel : HomeViewModel by viewModels()
+    private val viewModel : ReceiverProfileViewModel by viewModels()
     private lateinit var binding : FragmentHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
 
         viewModel.initData()
 
